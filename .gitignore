@@ -1,0 +1,5 @@
+conf/nodes
+data
+logs
+zookeeper-*
+zookeeper.out

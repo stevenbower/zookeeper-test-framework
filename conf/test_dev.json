@@ -1,0 +1,39 @@
+{
+  "name" : "current",
+  "basePort" : 9700,
+  "nodePortOffset" : 1,
+  "peerPortOffset" : 20,
+  "leaderPortOffset" : 40,
+  "tickTime" : 2000,
+  "initLimit" : 5,
+  "syncLimit" : 2,
+  "nodes" : [
+    { "name" : "n1", "id" : 1 },
+    { "name" : "n2", "id" : 2 },
+    { "name" : "n3", "id" : 3 },
+    { "name" : "n4", "id" : 4 },
+    { "name" : "n5", "id" : 1 },
+    { "name" : "n6", "id" : 2 },
+    { "name" : "n7", "id" : 3 },
+    { "name" : "n8", "id" : 4, "observer" : "true" }
+  ],
+  "actions" : [
+    { "action" : "stop", "nodes" : [ "n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8"] },
+    { "action" : "quorum", "nodes" : ["n1", "n2", "n3", "n4"] },
+#    { "action" : "client-start" },
+    { "action" : "start", "nodes" : [ "n1", "n2", "n3", "n4" ] },
+
+    { "action" : "quorum", "nodes" : ["n1", "n2", "n3", "n5"] },
+    { "action" : "stop",  "nodes" : [ "n4" ] },
+    { "action" : "start", "nodes" : [ "n8" ] },
+
+    { "action" : "quorum", "nodes" : ["n1", "n2", "n7", "n8"] },
+    { "action" : "stop",  "nodes" : [ "n3" ] },
+    { "action" : "start", "nodes" : [ "n7" ] },
+
+#    { "action" : "client-stop" },
+#    { "action" : "client-start" },
+
+    { "action" : "stop", "nodes" : [ "n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8"] }
+  ]
+}
